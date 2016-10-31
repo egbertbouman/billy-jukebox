@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'open_sanslight', sans-serif;
+}
+
+.background {
+	background: #252443 url(../img/blur.jpg) no-repeat;
+}
+
+.full-size {
+    width: 100%;
+    height: 80px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.list-group-item:first-child {
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+.list-group-item:last-child {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+
+.list-group {
+    padding:0;
+    margin-top: 10px;
+}
+
+.list-group-item {
+    white-space: nowrap;
+    color: #818183;
+    border: 0px solid #bbb;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    margin-bottom: 5px !important;
+    background: #f7f6f1;
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+.header {
+    color: #fff;
+    background: #ed6f70;
+    font-size: 23px;
+    text-align: center;
+}
+
+.content, hr {
+    margin: 10px 0 10px 0;
+}
+
+.title-col {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+.cover-art {
+    border: 1px solid #fff;
+    margin-right: 10px;
+}
+
+.cover-art-col {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+}
+
+.stats {
+    color: #d7d7d2;
+}
+
+.text-small {
+    font-size: small;
+}
+
+.text-xsmall {
+    font-size: x-small;
+}
+
+.nopadding {
+    padding: 0 !important;
+}
+
+.col-padding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.registration-item,
+.suggestion-item {
+    padding: 0px 10px;
+}
+
+.modal-content {
+    border-radius: 0px;
+}
+
+/* Player */
+.player-item {
+    padding: 0px;
+    padding-left: 5px;
+    margin-top: 0px;
+    background: #000;
+}
+.interface {
+    color: #fff;
+}
+.progress {
+    margin-bottom: 0px;
+}
+.volume-bar {
+    display: inline-block;
+    width: 140px;
+    height: 10px;
+    margin: 0;
+}
+.current-time {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    font-size: small;
+}
+.seek-bar {
+    display: inline-block;
+    position: absolute;
+    right: 50px;
+    left: 200px;
+    top: 5px;
+    height: 10px;
+}
+#yt_player {
+    position:fixed;
+    bottom:50px;
+    z-index:9999;
+    display: none;
+}
+#sc_player {
+    position:fixed;
+    width: 100px;
+    height: 100px;
+    left: -100px;
+}
+.widget {
+     webkit-box-shadow: inset 10px 10px 250px -120px rgba(0,0,0,0.5);
+     -moz-box-shadow: inset 10px 10px 250px -120px rgba(0,0,0,0.5);
+     box-shadow: inset 10px 10px 250px -120px rgba(0,0,0,0.5);
+     padding: 0px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     height: 100px;
+}
+.padding {
+    padding: 5px;
+}
+.close-widget {
+    position: fixed;
+    top: 5px;
+    right: 8px;
+}
