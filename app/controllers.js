@@ -104,7 +104,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
         keyboard  : false
     });
     modalInstance.result.then(function success(result) {
-        ApiService.register(result.name);
+        ApiService.register(result.name, result.radio_id);
         $scope.start();
         }, function error() {
     });
@@ -132,11 +132,13 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
 app.controller('RegistrationModalCtrl',  function ($scope, $uibModalInstance) {
     $scope.save = function () {
         $scope.name_popover = (!$scope.name);
-        if (!$scope.name)
+        $scope.radio_id_popover = (!$scope.radio_id);
+        if (!$scope.name || !$scope.radio_id)
             return;
 
         $uibModalInstance.close({
             name: $scope.name,
+            radio_id: $scope.radio_id
         });
     };
 });

@@ -409,7 +409,7 @@ app.service('ApiService', function($http, $websocket, HelperService) {
 
     socket.onMessage(function(message) {
         var data = JSON.parse(message.data);
-        //console.log('Got message: ' + data.type);
+        console.log('Got message: ' + data.type);
         if (data.type == 'status') {
             self.last_status_update = new Date().getTime();
             angular.copy(data.position, self.position);
@@ -434,8 +434,8 @@ app.service('ApiService', function($http, $websocket, HelperService) {
         }
     });
 
-    this.register = function(name) {
-        socket.send(JSON.stringify({'type': 'register', 'name': name}));
+    this.register = function(name, radio_id) {
+        socket.send(JSON.stringify({'type': 'register', 'name': name, 'radio_id': radio_id}));
     };
 });
 
