@@ -10,6 +10,16 @@
     </head>
     <body class="background">
         <div class="container-fluid" ng-controller="MainCtrl">
+            <div class="list-group col-sm-10 col-sm-offset-1">
+                <div class="col-sm-12 col-padding">
+                    <div class="list-group-item header title">
+                        {{radio.current.title}}
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-repeat="r in radios" class="btn" type="button" ng-model="radio.current" uib-btn-radio="r" ng-change="toggle_radio()">{{r.titleshort}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="list-group col-sm-7 col-sm-offset-1">
                 <div class="col-sm-12 col-padding">
                     <div class="list-group-item header">

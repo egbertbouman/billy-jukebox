@@ -63,6 +63,11 @@ body {
     text-align: center;
 }
 
+.title {
+    color: #fff;
+    background: #2196f3;
+}
+
 .content, hr {
     margin: 10px 0 10px 0;
 }

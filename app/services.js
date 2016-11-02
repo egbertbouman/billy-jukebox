@@ -437,6 +437,9 @@ app.service('ApiService', function($http, $websocket, HelperService) {
     this.register = function(name, radio_id) {
         socket.send(JSON.stringify({'type': 'register', 'name': name, 'radio_id': radio_id}));
     };
+    this.unregister = function(radio_id) {
+        socket.send(JSON.stringify({'type': 'unregister', 'radio_id': radio_id}));
+    };
 });
 
 app.service('HelperService', function($uibModal) {

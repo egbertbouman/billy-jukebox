@@ -1,5 +1,27 @@
 app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uibModal, HelperService, MusicService, ApiService) {
 
+    /* Switching radio stations */
+    $scope.radios = [{id: 'd3e6f1ac9e0365f5e0685204284cda6dab51a52b',
+                      title: 'Title radio 1',
+                      titleshort: 'radio1'},
+                     {id: '06525c208f1bc0ab47781b988d4edb62c4098dd1',
+                      title: 'Title radio 2',
+                      titleshort: 'radio2'},
+                     {id: '0a9e17c075668830ea5ee1feb550005a5c9b1039',
+                      title: 'Title radio 3',
+                      titleshort: 'radio3'}];
+
+    $scope.radio = {current: {}, previous: {}};
+
+    $scope.toggle_radio = function() {
+        console.log('Switching to radio ' + $scope.radio.current.id);
+        if ($scope.radio.previous.id) {
+            ApiService.unregister($scope.radio.previous.id);
+        }
+        ApiService.register($scope.user_name, $scope.radio.current.id);
+        $scope.radio.previous.id = $scope.radio.current.id;
+    }
+
     /* Music player */
     $scope.musicservice = MusicService;
     $scope.current_time = 0;
@@ -100,13 +122,26 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
         animation: false,
         templateUrl: 'app/views/registration_modal.html',
         controller: 'RegistrationModalCtrl',
+        scope: $scope,
+        resolve: {
+            radios: function () {
+                return $scope.radios;
+            }
+        },
         backdrop  : 'static',
         keyboard  : false
     });
     modalInstance.result.then(function success(result) {
-        ApiService.register(result.name, result.radio_id);
-        $scope.start();
-        }, function error() {
+        $.each($scope.radios, function(index, radio) {
+            if (result.radio_id == radio.id) {
+                $scope.radio.current = radio;
+                $scope.user_name = result.name;
+                $scope.toggle_radio();
+                $scope.start();
+                return false;
+            }
+        });
+    }, function error() {
     });
 
     $scope.close_widget = function() {
@@ -131,14 +166,11 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
 
 app.controller('RegistrationModalCtrl',  function ($scope, $uibModalInstance) {
     $scope.save = function () {
-        $scope.name_popover = (!$scope.name);
-        $scope.radio_id_popover = (!$scope.radio_id);
-        if (!$scope.name || !$scope.radio_id)
+        $scope.name_popover = (!$scope.registration.name);
+        $scope.radio_id_popover = (!$scope.registration.radio_id);
+        if (!$scope.registration.name || !$scope.registration.radio_id)
             return;
 
-        $uibModalInstance.close({
-            name: $scope.name,
-            radio_id: $scope.radio_id
-        });
+        $uibModalInstance.close($scope.registration);
     };
 });
