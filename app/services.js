@@ -398,7 +398,7 @@ app.service('MusicService', function($rootScope, jPlayerFactory, YoutubePlayerFa
 });
 
 
-app.service('ApiService', function($http, $websocket, HelperService) {
+app.service('ApiService', function($http, $websocket) {
     this.last_status_update = undefined;
     this.tracks = [];
     this.position = [0, 0];
@@ -439,6 +439,13 @@ app.service('ApiService', function($http, $websocket, HelperService) {
     };
     this.unregister = function(radio_id) {
         socket.send(JSON.stringify({'type': 'unregister', 'radio_id': radio_id}));
+    };
+
+    // Use Billy clicklog endpoint to log clicks
+    this.post_clicklog = function(data) {
+        return $http.post('//musesync.ewi.tudelft.nl:8000/api/clicklog?app=billy-jukebox', data).then(function successCallback(response) {
+            return response.data;
+        }, null);
     };
 });
 

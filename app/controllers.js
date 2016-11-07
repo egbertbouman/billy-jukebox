@@ -63,6 +63,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
     });
     $scope.$on('ended', function(event) {
         MusicService.next(true);
+        log();
     });
     $scope.set_volume = function(volume) {
         MusicService.set_volume(volume);
@@ -76,12 +77,23 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
     var reload = function(tracks) {
         MusicService.set_playlists({default_name: {tracks: tracks}});
         MusicService.load_and_play({name: 'default_name', index: 0});
+        log();
     };
 
     /* Server variables */
     $scope.tracks = ApiService.tracks;
     $scope.position = ApiService.position;
     $scope.registrations = ApiService.registrations;
+
+    /* Clicklog */
+    var log = function() {
+        ApiService.post_clicklog({
+            track: $scope.musicservice.track.link,
+            user: $scope.user_name,
+            volume: $scope.current_volume,
+            radio: $scope.radio.current
+        });
+    };
 
     /* Play position synchronization */
     var playlist_position = function(index, position) {
