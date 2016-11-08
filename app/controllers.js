@@ -14,6 +14,8 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
     $scope.radio = {current: {}, previous: {}};
 
     $scope.toggle_radio = function() {
+        $scope.loading = true;
+
         console.log('Switching to radio ' + $scope.radio.current.id);
 
         if ($scope.radio.previous.id) {
@@ -61,6 +63,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
     $scope.$on('playing', function(event) {
         // Soundcloud seems to reset the volume after changing tracks, so we need to set the volume again.
         MusicService.set_volume($scope.current_volume);
+        $scope.loading = false;
     });
     $scope.$on('ended', function(event) {
         MusicService.next(true);

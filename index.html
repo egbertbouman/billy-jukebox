@@ -9,7 +9,7 @@
         <!-- endbuild -->
     </head>
     <body class="background">
-        <div class="container-fluid" ng-controller="MainCtrl">
+        <div class="container-fluid" ng-controller="MainCtrl" ng-cloak>
             <div class="list-group col-sm-10 col-sm-offset-1">
                 <div class="col-sm-12 col-padding">
                     <div class="list-group-item header title">
@@ -19,13 +19,14 @@
                         </div>
                     </div>
                 </div>
+                <img class="center-block" src="assets/img/spinner.svg" alt="Loading" ng-show="loading === true">
             </div>
-            <div class="list-group col-sm-7 col-sm-offset-1">
+            <div class="list-group col-sm-7 col-sm-offset-1" ng-show="loading === false">
                 <div class="col-sm-12 col-padding">
                     <div class="list-group-item header">
                         Recently played tracks
                     </div>
-                    <div ng-repeat="track in tracks_prev track by $index" class="list-group-item" ng-cloak>
+                    <div ng-repeat="track in tracks_prev track by $index" class="list-group-item">
                         <img class="cover-art img-circle pull-left" ng-src="{{track.image}}" src="assets/img/blank.png" width="80" height="80">
                         <div class="content">
                             <p>{{track.title}}</p>
@@ -61,7 +62,7 @@
                     <div class="list-group-item header">
                         Up next..
                     </div>
-                    <div ng-repeat="track in tracks_next track by $index" class="list-group-item" ng-cloak>
+                    <div ng-repeat="track in tracks_next track by $index" class="list-group-item">
                         <img class="cover-art img-circle pull-left" ng-src="{{track.image}}" src="assets/img/blank.png" width="80" height="80">
                         <div class="content">
                             <p>{{track.title}}</p>
@@ -82,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="list-group col-sm-3">
+            <div class="list-group col-sm-3" ng-show="loading === false">
                 <div class="col-sm-12 col-padding">
                     <div class="list-group-item header">
                         Listeners
