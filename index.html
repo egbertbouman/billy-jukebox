@@ -25,7 +25,7 @@
                     <div class="list-group-item header">
                         Recently played tracks
                     </div>
-                    <div ng-repeat="track in tracks | range:0:musicservice.index+1" class="list-group-item" ng-cloak>
+                    <div ng-repeat="track in tracks_prev track by $index" class="list-group-item" ng-cloak>
                         <img class="cover-art img-circle pull-left" ng-src="{{track.image}}" src="assets/img/blank.png" width="80" height="80">
                         <div class="content">
                             <p>{{track.title}}</p>
@@ -61,7 +61,7 @@
                     <div class="list-group-item header">
                         Up next..
                     </div>
-                    <div ng-repeat="track in tracks | range:musicservice.index+1 | limitTo:3" class="list-group-item" ng-cloak>
+                    <div ng-repeat="track in tracks_next track by $index" class="list-group-item" ng-cloak>
                         <img class="cover-art img-circle pull-left" ng-src="{{track.image}}" src="assets/img/blank.png" width="80" height="80">
                         <div class="content">
                             <p>{{track.title}}</p>

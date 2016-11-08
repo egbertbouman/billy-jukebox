@@ -15,6 +15,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
 
     $scope.toggle_radio = function() {
         console.log('Switching to radio ' + $scope.radio.current.id);
+
         if ($scope.radio.previous.id) {
             ApiService.unregister($scope.radio.previous.id);
         }
@@ -64,6 +65,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
     $scope.$on('ended', function(event) {
         MusicService.next(true);
         log();
+        update_track_lists();
     });
     $scope.set_volume = function(volume) {
         MusicService.set_volume(volume);
@@ -78,6 +80,7 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
         MusicService.set_playlists({default_name: {tracks: tracks}});
         MusicService.load_and_play({name: 'default_name', index: 0});
         log();
+        update_track_lists();
     };
 
     /* Server variables */
@@ -125,10 +128,35 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
             console.log('Time difference is ' + timediff + 's, correcting play position');
             if (MusicService.index !== index) {
                 MusicService.load_and_play({name: 'default_name', index: index});
+                update_track_lists();
             }
             MusicService.seek(position);
         }
     };
+
+    $scope.tracks_prev = [];
+    $scope.tracks_next = [];
+    var update_track_lists = function() {
+        var counter = 0;
+        var tracks_prev = [];
+        while (tracks_prev.length < 3) {
+            tracks_prev.unshift($scope.tracks[mod(MusicService.index - counter, $scope.tracks.length)]);
+            counter++;
+        }
+        $scope.tracks_prev = tracks_prev;
+
+        counter = 1;
+        tracks_next = [];
+        while (tracks_next.length < 3) {
+            tracks_next.push($scope.tracks[mod(MusicService.index + counter, $scope.tracks.length)]);
+            counter++;
+        }
+        $scope.tracks_next = tracks_next;
+    }
+
+    var mod = function (a, b) {
+        return ((a % b) + b) % b;
+    }
 
     var modalInstance = $uibModal.open({
         animation: false,
