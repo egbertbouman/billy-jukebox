@@ -61,8 +61,6 @@ app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uib
         });
     };
     $scope.$on('playing', function(event) {
-        // Soundcloud seems to reset the volume after changing tracks, so we need to set the volume again.
-        MusicService.set_volume($scope.current_volume);
         $scope.loading = false;
     });
     $scope.$on('ended', function(event) {
