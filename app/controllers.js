@@ -1,13 +1,13 @@
 app.controller('MainCtrl', function ($rootScope, $scope, $attrs, $interval, $uibModal, HelperService, MusicService, ApiService) {
 
     /* Switching radio stations */
-    $scope.radios = [{id: 'd3e6f1ac9e0365f5e0685204284cda6dab51a52b',
+    $scope.radios = [{id: 'b8ee938413de87cb4dbbfcd4c823a132937dfb57',
                       title: 'Title radio 1',
                       titleshort: 'radio1'},
-                     {id: '06525c208f1bc0ab47781b988d4edb62c4098dd1',
+                     {id: 'a801d25411332d13c60d618fb4cc80707d1ed21a',
                       title: 'Title radio 2',
                       titleshort: 'radio2'},
-                     {id: '0a9e17c075668830ea5ee1feb550005a5c9b1039',
+                     {id: '06428069a117be3cccaefdb4a7be8c21b6ce5980',
                       title: 'Title radio 3',
                       titleshort: 'radio3'}];
 
