@@ -49,9 +49,9 @@
                         <div id="player-ui" class="audio">
                             <div class="type-playlist">
                                 <div class="gui interface">
-                                    <span class="glyphicon glyphicon-volume-down"></span>
+                                    <span class="glyphicon glyphicon-volume-down" ng-click="set_volume(0)"></span>
                                     <uib-progressbar class="volume-bar" max="100" value="current_volume" ng-click="volume_click($event)"></uib-progressbar>
-                                    <span class="glyphicon glyphicon-volume-up"></span>
+                                    <span class="glyphicon glyphicon-volume-up" ng-click="set_volume(100)"></span>
                                     <uib-progressbar class="seek-bar" max="duration" value="current_time" ng-click="timeline_click($event)"></uib-progressbar>
                                     <div class="current-time">{{ current_time_str }}</div>
                                 </div>
